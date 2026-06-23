@@ -1,12 +1,37 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|c:\\users\\ninop\\projectsc\\task-manager\\backend\\backend.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|solutionrelative:backend.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "backend.http",
+              "DocumentMoniker": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\backend.http",
+              "RelativeDocumentMoniker": "backend.http",
+              "ToolTip": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\backend.http",
+              "RelativeToolTip": "backend.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2026-06-23T20:38:18.668Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
