@@ -47,6 +47,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 // Auth services
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IProjectService, ProjectService>();
 
 // JWT Authentication
 var jwtSecret = builder.Configuration["Jwt:Secret"]!;
