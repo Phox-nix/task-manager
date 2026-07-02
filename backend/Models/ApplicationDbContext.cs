@@ -13,6 +13,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<User> Users { get; set; }
     public DbSet<Project> Projects { get; set; }
     public DbSet<ProjectMember> ProjectMembers { get; set; }
+    public DbSet<TaskItem> Tasks { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -29,10 +30,10 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<Project>(entity =>
         {
             entity.HasKey(e => e.Id);
-            entity.Property(e=>e.Name).IsRequired().HasMaxLength(100);
+            entity.Property(e => e.Name).IsRequired().HasMaxLength(100);
             entity.Property(e => e.Description).HasMaxLength(500);
             entity.Property(e => e.Status).IsRequired().HasDefaultValue("Active");
-            entity.HasOne(e=>e.Owner)
+            entity.HasOne(e => e.Owner)
             .WithMany()
             .HasForeignKey(e => e.OwnerId)
             .OnDelete(DeleteBehavior.Restrict);
@@ -44,10 +45,29 @@ public class ApplicationDbContext : DbContext
             .WithMany(p => p.Members)
             .HasForeignKey(e => e.ProjectId)
             .OnDelete(DeleteBehavior.Cascade);
-            entity.HasOne(e=> e.User)
+            entity.HasOne(e => e.User)
             .WithMany()
-            .HasForeignKey(e=>e.UserId)
+            .HasForeignKey(e => e.UserId)
             .OnDelete(DeleteBehavior.Restrict);
+        });
+        modelBuilder.Entity<TaskItem>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Title).IsRequired().HasMaxLength(200);
+            entity.Property(e => e.Description).HasMaxLength(1000);
+            entity.Property(e => e.Status).IsRequired().HasDefaultValue("Todo");
+            entity.Property(e => e.Priority).IsRequired().HasDefaultValue("Medium");
+
+            entity.HasOne(e => e.Project)
+                  .WithMany()
+                  .HasForeignKey(e => e.ProjectId)
+                  .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne(e => e.Assignee)
+                  .WithMany()
+                  .HasForeignKey(e => e.AssigneeId)
+                  .OnDelete(DeleteBehavior.SetNull)
+                  .IsRequired(false);
         });
     }
 }

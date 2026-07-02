@@ -7,16 +7,32 @@
       "RelativeMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|c:\\users\\ninop\\projectsc\\task-manager\\backend\\controllers\\projectscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|solutionrelative:controllers\\projectscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|c:\\users\\ninop\\projectsc\\task-manager\\backend\\controllers\\taskscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|solutionrelative:controllers\\taskscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|c:\\users\\ninop\\projectsc\\task-manager\\backend\\services\\implementations\\projectservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|solutionrelative:services\\implementations\\projectservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|c:\\users\\ninop\\projectsc\\task-manager\\backend\\services\\implementations\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|solutionrelative:services\\implementations\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|c:\\users\\ninop\\projectsc\\task-manager\\backend\\services\\interfaces\\iprojectservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|solutionrelative:services\\interfaces\\iprojectservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|c:\\users\\ninop\\projectsc\\task-manager\\backend\\models\\taskitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|solutionrelative:models\\taskitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|c:\\users\\ninop\\projectsc\\task-manager\\backend\\models\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|solutionrelative:models\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|c:\\users\\ninop\\projectsc\\task-manager\\backend\\services\\interfaces\\itaskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|solutionrelative:services\\interfaces\\itaskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|c:\\users\\ninop\\projectsc\\task-manager\\backend\\dtos\\tasks\\createtaskrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|solutionrelative:dtos\\tasks\\createtaskrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|c:\\users\\ninop\\projectsc\\task-manager\\backend\\dtos\\tasks\\updatetaskrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|solutionrelative:dtos\\tasks\\updatetaskrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -36,48 +52,100 @@
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAAADEAAAA+AAAAAAAAAA==",
+              "ViewState": "AgIAACYAAAAAAAAAAAAAADcAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-30T09:07:01.774Z",
+              "WhenOpened": "2026-07-02T11:01:18.423Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ProjectsController.cs",
-              "DocumentMoniker": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\Controllers\\ProjectsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ProjectsController.cs",
-              "ToolTip": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\Controllers\\ProjectsController.cs",
-              "RelativeToolTip": "Controllers\\ProjectsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGMAAAABAAAAAAAAAA==",
+              "Title": "TasksController.cs",
+              "DocumentMoniker": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\Controllers\\TasksController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TasksController.cs",
+              "ToolTip": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\Controllers\\TasksController.cs",
+              "RelativeToolTip": "Controllers\\TasksController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-30T09:04:35.203Z",
+              "WhenOpened": "2026-07-02T10:59:52.83Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\Models\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Models\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\Models\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Models\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-02T10:56:22.767Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ProjectService.cs",
-              "DocumentMoniker": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\Services\\Implementations\\ProjectService.cs",
-              "RelativeDocumentMoniker": "Services\\Implementations\\ProjectService.cs",
-              "ToolTip": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\Services\\Implementations\\ProjectService.cs",
-              "RelativeToolTip": "Services\\Implementations\\ProjectService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAbAAAAAAAAAA==",
+              "Title": "TaskService.cs",
+              "DocumentMoniker": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\Services\\Implementations\\TaskService.cs",
+              "RelativeDocumentMoniker": "Services\\Implementations\\TaskService.cs",
+              "ToolTip": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\Services\\Implementations\\TaskService.cs",
+              "RelativeToolTip": "Services\\Implementations\\TaskService.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAABIAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-30T08:34:10.261Z",
+              "WhenOpened": "2026-07-02T09:50:21.01Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ITaskService.cs",
+              "DocumentMoniker": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\Services\\Interfaces\\ITaskService.cs",
+              "RelativeDocumentMoniker": "Services\\Interfaces\\ITaskService.cs",
+              "ToolTip": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\Services\\Interfaces\\ITaskService.cs",
+              "RelativeToolTip": "Services\\Interfaces\\ITaskService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-02T09:43:58.562Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UpdateTaskRequest.cs",
+              "DocumentMoniker": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\DTOs\\Tasks\\UpdateTaskRequest.cs",
+              "RelativeDocumentMoniker": "DTOs\\Tasks\\UpdateTaskRequest.cs",
+              "ToolTip": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\DTOs\\Tasks\\UpdateTaskRequest.cs",
+              "RelativeToolTip": "DTOs\\Tasks\\UpdateTaskRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-02T09:40:24.042Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CreateTaskRequest.cs",
+              "DocumentMoniker": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\DTOs\\Tasks\\CreateTaskRequest.cs",
+              "RelativeDocumentMoniker": "DTOs\\Tasks\\CreateTaskRequest.cs",
+              "ToolTip": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\DTOs\\Tasks\\CreateTaskRequest.cs",
+              "RelativeToolTip": "DTOs\\Tasks\\CreateTaskRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-02T09:40:01.868Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "IProjectService.cs",
-              "DocumentMoniker": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\Services\\Interfaces\\IProjectService.cs",
-              "RelativeDocumentMoniker": "Services\\Interfaces\\IProjectService.cs",
-              "ToolTip": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\Services\\Interfaces\\IProjectService.cs",
-              "RelativeToolTip": "Services\\Interfaces\\IProjectService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA2AAAAAAAAAA==",
+              "Title": "TaskItem.cs",
+              "DocumentMoniker": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\Models\\TaskItem.cs",
+              "RelativeDocumentMoniker": "Models\\TaskItem.cs",
+              "ToolTip": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\Models\\TaskItem.cs",
+              "RelativeToolTip": "Models\\TaskItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-30T08:12:23.989Z",
+              "WhenOpened": "2026-07-02T07:51:10.214Z",
               "EditorCaption": ""
             }
           ]
