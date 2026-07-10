@@ -20,8 +20,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     }
   }, [hydrated, isAuthenticated, router]);
 
-  if (!hydrated) return null;
-  if (!isAuthenticated) return null;
+  // Show loading while hydrating OR while redirecting unauthenticated users
+  if (!hydrated || !isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <p className="text-gray-400 text-sm">Loading...</p>
+      </div>
+    );
+  }
 
   const handleLogout = () => {
     logout();

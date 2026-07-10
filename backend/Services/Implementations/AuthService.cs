@@ -45,7 +45,8 @@ public class AuthService : IAuthService
             Token = GenerateJwtToken(user),
             FullName = user.FullName,
             Email = user.Email,
-            Role = user.Role
+            Role = user.Role,
+            UserId = user.Id.ToString()
         };
     }
 
@@ -67,7 +68,8 @@ public class AuthService : IAuthService
             Token = GenerateJwtToken(user),
             FullName = user.FullName,
             Email = user.Email,
-            Role = user.Role
+            Role = user.Role,
+            UserId = user.Id.ToString()
         };
     }
 

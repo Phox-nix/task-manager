@@ -4,9 +4,15 @@ import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams, useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import commentService from '@/services/commentService';
+import {
+  CreateTaskRequest,
+  TaskResponse,
+  UpdateProjectRequest,
+  CreateCommentRequest,
+} from '@/types';
 import taskService from '@/services/taskService';
 import projectService from '@/services/projectService';
-import { CreateTaskRequest, TaskResponse } from '@/types';
 
 const STATUS_COLUMNS = ['Todo', 'InProgress', 'Done'];
 
@@ -21,6 +27,7 @@ export default function ProjectPage() {
   const router = useRouter();
   const queryClient = useQueryClient();
   const [showModal, setShowModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
   const [selectedTask, setSelectedTask] = useState<TaskResponse | null>(null);
 
   const { data: project, isLoading: projectLoading } = useQuery({
@@ -41,6 +48,18 @@ export default function ProjectPage() {
   } = useForm<CreateTaskRequest>({
     defaultValues: { priority: 'Medium' },
   });
+  const {
+    register: registerEdit,
+    handleSubmit: handleEditSubmit,
+    reset: resetEdit,
+    setValue,
+  } = useForm<UpdateProjectRequest>({
+    defaultValues: {
+      name: project?.name ?? '',
+      description: project?.description ?? '',
+      status: project?.status ?? 'Active',
+    },
+  });
 
   const createMutation = useMutation({
     mutationFn: (data: CreateTaskRequest) => taskService.create(id, data),
@@ -48,6 +67,14 @@ export default function ProjectPage() {
       queryClient.invalidateQueries({ queryKey: ['tasks', id] });
       setShowModal(false);
       reset();
+    },
+  });
+  const updateProjectMutation = useMutation({
+    mutationFn: (data: UpdateProjectRequest) => projectService.update(id, data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['project', id] });
+      queryClient.invalidateQueries({ queryKey: ['projects'] });
+      setShowEditModal(false);
     },
   });
 
@@ -97,12 +124,29 @@ export default function ProjectPage() {
           </button>
           <h1 className="text-2xl font-semibold text-gray-900">{project?.name}</h1>
           <p className="text-gray-500 mt-1">{project?.description}</p>
+          <button
+            onClick={() => router.push(`/projects/${id}/members`)}
+            className="text-sm text-blue-600 hover:underline mt-2 inline-block">
+            {project?.memberCount} member{project?.memberCount !== 1 ? 's' : ''} →
+          </button>
         </div>
-        <button
-          onClick={() => setShowModal(true)}
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
-          Add task
-        </button>
+        <div className="flex gap-3">
+          <button
+            onClick={() => {
+              setValue('name', project?.name ?? '');
+              setValue('description', project?.description ?? '');
+              setValue('status', project?.status ?? 'Active');
+              setShowEditModal(true);
+            }}
+            className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors">
+            Edit project
+          </button>
+          <button
+            onClick={() => setShowModal(true)}
+            className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+            Add task
+          </button>
+        </div>
       </div>
 
       {/* Kanban board */}
@@ -146,11 +190,12 @@ export default function ProjectPage() {
       {/* Task detail modal */}
       {selectedTask && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-2xl p-8 w-full max-w-md mx-4">
+          <div className="bg-white rounded-2xl p-8 w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto">
             <h2 className="text-xl font-semibold text-gray-900 mb-2">{selectedTask.title}</h2>
             <p className="text-gray-500 text-sm mb-6">
               {selectedTask.description || 'No description'}
             </p>
+
             <div className="space-y-3 mb-6">
               <div className="flex items-center justify-between text-sm">
                 <span className="text-gray-500">Status</span>
@@ -193,7 +238,11 @@ export default function ProjectPage() {
                 </div>
               )}
             </div>
-            <div className="flex gap-3">
+
+            {/* Comments section */}
+            <CommentsSection taskId={selectedTask.id} />
+
+            <div className="flex gap-3 mt-6">
               <button
                 onClick={() => setSelectedTask(null)}
                 className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
@@ -270,6 +319,138 @@ export default function ProjectPage() {
           </div>
         </div>
       )}
+      {showEditModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-2xl p-8 w-full max-w-md mx-4">
+            <h2 className="text-xl font-semibold text-gray-900 mb-6">Edit project</h2>
+            <form
+              onSubmit={handleEditSubmit((data) => updateProjectMutation.mutate(data))}
+              className="space-y-5">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Project name</label>
+                <input
+                  {...registerEdit('name', { required: 'Project name is required' })}
+                  type="text"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                <textarea
+                  {...registerEdit('description')}
+                  rows={3}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                <select
+                  {...registerEdit('status')}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                  <option value="Active">Active</option>
+                  <option value="Completed">Completed</option>
+                  <option value="Archived">Archived</option>
+                </select>
+              </div>
+              <div className="flex gap-3 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setShowEditModal(false)}
+                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={updateProjectMutation.isPending}
+                  className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 disabled:opacity-50 transition-colors">
+                  {updateProjectMutation.isPending ? 'Saving...' : 'Save changes'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function CommentsSection({ taskId }: { taskId: string }) {
+  const queryClient = useQueryClient();
+  const [content, setContent] = useState('');
+
+  const { data: comments, isLoading } = useQuery({
+    queryKey: ['comments', taskId],
+    queryFn: () => commentService.getAllForTask(taskId),
+  });
+
+  const createMutation = useMutation({
+    mutationFn: (data: CreateCommentRequest) => commentService.create(taskId, data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['comments', taskId] });
+      setContent('');
+    },
+  });
+
+  const deleteMutation = useMutation({
+    mutationFn: (commentId: string) => commentService.delete(taskId, commentId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['comments', taskId] });
+    },
+  });
+
+  return (
+    <div className="border-t border-gray-100 pt-6">
+      <h3 className="text-sm font-medium text-gray-900 mb-4">Comments</h3>
+
+      {isLoading ? (
+        <p className="text-gray-400 text-sm">Loading comments...</p>
+      ) : comments?.length === 0 ? (
+        <p className="text-gray-400 text-sm mb-4">No comments yet</p>
+      ) : (
+        <div className="space-y-3 mb-4">
+          {comments?.map((comment) => (
+            <div key={comment.id} className="bg-gray-50 rounded-xl p-3">
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-xs font-medium text-gray-700">{comment.authorName}</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-gray-400">
+                    {new Date(comment.createdAt).toLocaleDateString()}
+                  </span>
+                  <button
+                    onClick={() => deleteMutation.mutate(comment.id)}
+                    className="text-xs text-red-400 hover:text-red-600">
+                    Delete
+                  </button>
+                </div>
+              </div>
+              <p className="text-sm text-gray-600">{comment.content}</p>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div className="flex gap-2">
+        <input
+          type="text"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          placeholder="Add a comment..."
+          className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && content.trim()) {
+              createMutation.mutate({ content });
+            }
+          }}
+        />
+        <button
+          onClick={() => {
+            if (content.trim()) createMutation.mutate({ content });
+          }}
+          disabled={createMutation.isPending || !content.trim()}
+          className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 disabled:opacity-50 transition-colors">
+          Send
+        </button>
+      </div>
     </div>
   );
 }
