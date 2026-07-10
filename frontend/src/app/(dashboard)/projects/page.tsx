@@ -10,13 +10,16 @@ import { useForm } from 'react-hook-form';
 export default function ProjectsPage() {
   const router = useRouter();
   const queryClient = useQueryClient();
+  //4. State to control the visibility of the modal
   const [showModal, setShowModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
 
+  // 1. Fetch projects using React Query
   const { data: projects, isLoading } = useQuery({
     queryKey: ['projects'],
     queryFn: projectService.getAll,
   });
-
+  // 3. Set up form handling with react-hook-form
   const {
     register,
     handleSubmit,
@@ -24,6 +27,7 @@ export default function ProjectsPage() {
     formState: { errors, isSubmitting },
   } = useForm<CreateProjectRequest>();
 
+  // 5. Set up mutation for creating a new project
   const createMutation = useMutation({
     mutationFn: projectService.create,
     onSuccess: () => {
@@ -32,11 +36,11 @@ export default function ProjectsPage() {
       reset();
     },
   });
-
+  //6. Handle form submission
   const onSubmit = async (data: CreateProjectRequest) => {
     createMutation.mutate(data);
   };
-
+  // 2. Handle loading state
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-64">
