@@ -93,6 +93,18 @@ public class ProjectService : IProjectService
 
         return project;
     }
+    public async Task<ProjectResponse> UpdateImageAsync(Guid projectId, string imageUrl, Guid userId)
+    {
+        var project = await GetProjectWithAccessCheck(projectId, userId);
+
+        if (project.OwnerId != userId)
+            throw new UnauthorizedAccessException("Only the project owner can update the image");
+
+        project.ImageUrl = imageUrl;
+        await _context.SaveChangesAsync();
+
+        return MapToResponse(project);
+    }
 
     private static ProjectResponse MapToResponse(Project project)
     {
@@ -105,7 +117,8 @@ public class ProjectService : IProjectService
             OwnerId = project.OwnerId,
             OwnerName = project.Owner.FullName,
             CreatedAt = project.CreatedAt,
-            MemberCount = project.Members.Count
+            MemberCount = project.Members.Count,
+            ImageUrl = project.ImageUrl
         };
     }
 }
