@@ -4,43 +4,49 @@ import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import projectService from '@/services/projectService';
+import imageService from '@/services/imageService';
 import { CreateProjectRequest } from '@/types';
 import { useForm } from 'react-hook-form';
 
 export default function ProjectsPage() {
   const router = useRouter();
   const queryClient = useQueryClient();
-  //4. State to control the visibility of the modal
   const [showModal, setShowModal] = useState(false);
-  const [showEditModal, setShowEditModal] = useState(false);
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [isCreating, setIsCreating] = useState(false);
 
-  // 1. Fetch projects using React Query
   const { data: projects, isLoading } = useQuery({
     queryKey: ['projects'],
     queryFn: projectService.getAll,
   });
-  // 3. Set up form handling with react-hook-form
+
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<CreateProjectRequest>();
 
-  // 5. Set up mutation for creating a new project
-  const createMutation = useMutation({
-    mutationFn: projectService.create,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['projects'] }); // Invalidate the projects query to refetch the updated list
+  const onSubmit = async (data: CreateProjectRequest) => {
+    try {
+      setIsCreating(true);
+      const project = await projectService.create(data);
+      if (imageFile) {
+        await imageService.updateProjectImage(project.id, imageFile);
+      }
+      queryClient.invalidateQueries({ queryKey: ['projects'] });
       setShowModal(false);
       reset();
-    },
-  });
-  //6. Handle form submission
-  const onSubmit = async (data: CreateProjectRequest) => {
-    createMutation.mutate(data);
+      setImageFile(null);
+      setImagePreview(null);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsCreating(false);
+    }
   };
-  // 2. Handle loading state
+
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-64">
@@ -78,26 +84,37 @@ export default function ProjectsPage() {
             <div
               key={project.id}
               onClick={() => router.push(`/projects/${project.id}`)}
-              className="bg-white rounded-2xl border border-gray-200 p-6 cursor-pointer hover:border-gray-300 hover:shadow-sm transition-all">
-              <div className="flex items-start justify-between mb-3">
-                <h3 className="font-medium text-gray-900">{project.name}</h3>
-                <span
-                  className={`text-xs px-2 py-1 rounded-full ${
-                    project.status === 'Active'
-                      ? 'bg-green-50 text-green-700'
-                      : 'bg-gray-100 text-gray-600'
-                  }`}>
-                  {project.status}
-                </span>
-              </div>
-              <p className="text-sm text-gray-500 mb-4 line-clamp-2">
-                {project.description || 'No description'}
-              </p>
-              <div className="flex items-center justify-between text-xs text-gray-400">
-                <span>
-                  {project.memberCount} member{project.memberCount !== 1 ? 's' : ''}
-                </span>
-                <span>{new Date(project.createdAt).toLocaleDateString()}</span>
+              className="bg-white rounded-2xl border border-gray-200 cursor-pointer hover:border-gray-300 hover:shadow-sm transition-all overflow-hidden">
+              {project.imageUrl ? (
+                <img
+                  src={project.imageUrl}
+                  alt={project.name}
+                  className="w-full h-32 object-cover"
+                />
+              ) : (
+                <div className="w-full h-32 bg-gradient-to-br from-blue-50 to-indigo-100" />
+              )}
+              <div className="p-6">
+                <div className="flex items-start justify-between mb-3">
+                  <h3 className="font-medium text-gray-900">{project.name}</h3>
+                  <span
+                    className={`text-xs px-2 py-1 rounded-full ${
+                      project.status === 'Active'
+                        ? 'bg-green-50 text-green-700'
+                        : 'bg-gray-100 text-gray-600'
+                    }`}>
+                    {project.status}
+                  </span>
+                </div>
+                <p className="text-sm text-gray-500 mb-4 line-clamp-2">
+                  {project.description || 'No description'}
+                </p>
+                <div className="flex items-center justify-between text-xs text-gray-400">
+                  <span>
+                    {project.memberCount} member{project.memberCount !== 1 ? 's' : ''}
+                  </span>
+                  <span>{new Date(project.createdAt).toLocaleDateString()}</span>
+                </div>
               </div>
             </div>
           ))}
@@ -128,21 +145,47 @@ export default function ProjectsPage() {
                   placeholder="What is this project about?"
                 />
               </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Cover image (optional)
+                </label>
+                <input
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      setImageFile(file);
+                      setImagePreview(URL.createObjectURL(file));
+                    }
+                  }}
+                  className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                />
+                {imagePreview && (
+                  <img
+                    src={imagePreview}
+                    alt="Preview"
+                    className="mt-3 w-full h-32 object-cover rounded-lg"
+                  />
+                )}
+              </div>
               <div className="flex gap-3 pt-2">
                 <button
                   type="button"
                   onClick={() => {
                     setShowModal(false);
                     reset();
+                    setImageFile(null);
+                    setImagePreview(null);
                   }}
                   className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  disabled={isSubmitting || createMutation.isPending}
+                  disabled={isCreating}
                   className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 disabled:opacity-50 transition-colors">
-                  {createMutation.isPending ? 'Creating...' : 'Create project'}
+                  {isCreating ? 'Creating...' : 'Create project'}
                 </button>
               </div>
             </form>

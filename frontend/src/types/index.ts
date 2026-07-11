@@ -39,6 +39,7 @@ export interface ProjectResponse {
   ownerName: string;
   createdAt: string;
   memberCount: number;
+  imageUrl?: string;
 }
 
 // Tasks

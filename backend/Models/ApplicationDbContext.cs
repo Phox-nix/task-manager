@@ -34,6 +34,7 @@ public class ApplicationDbContext : DbContext
             entity.Property(e => e.Name).IsRequired().HasMaxLength(100);
             entity.Property(e => e.Description).HasMaxLength(500);
             entity.Property(e => e.Status).IsRequired().HasDefaultValue("Active");
+            entity.Property(e => e.ImageUrl).HasMaxLength(500);
             entity.HasOne(e => e.Owner)
             .WithMany()
             .HasForeignKey(e => e.OwnerId)

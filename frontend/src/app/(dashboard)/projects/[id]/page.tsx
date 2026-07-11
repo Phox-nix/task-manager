@@ -13,6 +13,7 @@ import {
 } from '@/types';
 import taskService from '@/services/taskService';
 import projectService from '@/services/projectService';
+import imageService from '@/services/imageService';
 
 const STATUS_COLUMNS = ['Todo', 'InProgress', 'Done'];
 
@@ -29,6 +30,8 @@ export default function ProjectPage() {
   const [showModal, setShowModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedTask, setSelectedTask] = useState<TaskResponse | null>(null);
+  const [editImageFile, setEditImageFile] = useState<File | null>(null);
+  const [editImagePreview, setEditImagePreview] = useState<string | null>(null);
 
   const { data: project, isLoading: projectLoading } = useQuery({
     queryKey: ['project', id],
@@ -71,10 +74,15 @@ export default function ProjectPage() {
   });
   const updateProjectMutation = useMutation({
     mutationFn: (data: UpdateProjectRequest) => projectService.update(id, data),
-    onSuccess: () => {
+    onSuccess: async (updatedProject) => {
+      if (editImageFile) {
+        await imageService.updateProjectImage(id, editImageFile);
+      }
       queryClient.invalidateQueries({ queryKey: ['project', id] });
       queryClient.invalidateQueries({ queryKey: ['projects'] });
       setShowEditModal(false);
+      setEditImageFile(null);
+      setEditImagePreview(null);
     },
   });
 
@@ -352,10 +360,45 @@ export default function ProjectPage() {
                   <option value="Archived">Archived</option>
                 </select>
               </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Cover image (optional)
+                </label>
+                {project?.imageUrl && !editImagePreview && (
+                  <img
+                    src={project.imageUrl}
+                    alt="Current cover"
+                    className="w-full h-32 object-cover rounded-lg mb-2"
+                  />
+                )}
+                <input
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      setEditImageFile(file);
+                      setEditImagePreview(URL.createObjectURL(file));
+                    }
+                  }}
+                  className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                />
+                {editImagePreview && (
+                  <img
+                    src={editImagePreview}
+                    alt="New cover preview"
+                    className="mt-3 w-full h-32 object-cover rounded-lg"
+                  />
+                )}
+              </div>
               <div className="flex gap-3 pt-2">
                 <button
                   type="button"
-                  onClick={() => setShowEditModal(false)}
+                  onClick={() => {
+                    setShowEditModal(false);
+                    setEditImageFile(null);
+                    setEditImagePreview(null);
+                  }}
                   className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
                   Cancel
                 </button>

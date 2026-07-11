@@ -1,4 +1,5 @@
 ﻿using backend.DTOs.Projects;
+using backend.Services.Implementations;
 using backend.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,10 +13,12 @@ namespace backend.Controllers;
 public class ProjectsController : ControllerBase
 {
     private readonly IProjectService _projectService;
+    private readonly IImageService _imageService;
 
-    public ProjectsController(IProjectService projectService)
+    public ProjectsController(IProjectService projectService, IImageService imageService)
     {
         _projectService = projectService;
+        _imageService = imageService;
     }
 
     [HttpGet]
@@ -84,6 +87,36 @@ public class ProjectsController : ControllerBase
         catch (KeyNotFoundException ex)
         {
             return NotFound(new { message = ex.Message });
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            return Forbid(ex.Message);
+        }
+    }
+    [HttpPatch("{id}/image")]
+    [Consumes("multipart/form-data")]
+    public async Task<IActionResult> UpdateImage(Guid id, IFormFile file)
+    {
+        try
+        {
+            var userId = GetUserId();
+            var project = await _projectService.GetByIdAsync(id, userId);
+
+            // Delete old image if exists
+            if (!string.IsNullOrEmpty(project.ImageUrl))
+                await _imageService.DeleteImageAsync(project.ImageUrl);
+
+            var imageUrl = await _imageService.UploadImageAsync(file);
+            var updated = await _projectService.UpdateImageAsync(id, imageUrl, userId);
+            return Ok(updated);
+        }
+        catch (KeyNotFoundException ex)
+        {
+            return NotFound(new { message = ex.Message });
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(new { message = ex.Message });
         }
         catch (UnauthorizedAccessException ex)
         {

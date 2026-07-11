@@ -8,6 +8,7 @@ namespace backend.Services.Interfaces
         Task<ProjectResponse> CreateAsync(CreateProjectRequest request, Guid ownerId);
         Task<ProjectResponse> UpdateAsync(Guid projectId, UpdateProjectRequest request, Guid userId);
         Task DeleteAsync(Guid projectId, Guid userId);
+        Task<ProjectResponse> UpdateImageAsync(Guid projectId, string imageUrl, Guid userId);
 
     }
 }

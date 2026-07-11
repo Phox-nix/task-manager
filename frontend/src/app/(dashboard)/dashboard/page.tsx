@@ -72,26 +72,37 @@ export default function DashboardPage() {
               <div
                 key={project.id}
                 onClick={() => router.push(`/projects/${project.id}`)}
-                className="bg-white rounded-2xl border border-gray-200 p-6 cursor-pointer hover:border-gray-300 hover:shadow-sm transition-all">
-                <div className="flex items-start justify-between mb-3">
-                  <h3 className="font-medium text-gray-900">{project.name}</h3>
-                  <span
-                    className={`text-xs px-2 py-1 rounded-full ${
-                      project.status === 'Active'
-                        ? 'bg-green-50 text-green-700'
-                        : 'bg-gray-100 text-gray-600'
-                    }`}>
-                    {project.status}
-                  </span>
-                </div>
-                <p className="text-sm text-gray-500 mb-4 line-clamp-2">
-                  {project.description || 'No description'}
-                </p>
-                <div className="flex items-center justify-between text-xs text-gray-400">
-                  <span>
-                    {project.memberCount} member{project.memberCount !== 1 ? 's' : ''}
-                  </span>
-                  <span>{new Date(project.createdAt).toLocaleDateString()}</span>
+                className="bg-white rounded-2xl border border-gray-200 cursor-pointer hover:border-gray-300 hover:shadow-sm transition-all overflow-hidden">
+                {project.imageUrl ? (
+                  <img
+                    src={project.imageUrl}
+                    alt={project.name}
+                    className="w-full h-32 object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-32 bg-gradient-to-br from-blue-50 to-indigo-100" />
+                )}
+                <div className="p-6">
+                  <div className="flex items-start justify-between mb-3">
+                    <h3 className="font-medium text-gray-900">{project.name}</h3>
+                    <span
+                      className={`text-xs px-2 py-1 rounded-full ${
+                        project.status === 'Active'
+                          ? 'bg-green-50 text-green-700'
+                          : 'bg-gray-100 text-gray-600'
+                      }`}>
+                      {project.status}
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-500 mb-4 line-clamp-2">
+                    {project.description || 'No description'}
+                  </p>
+                  <div className="flex items-center justify-between text-xs text-gray-400">
+                    <span>
+                      {project.memberCount} member{project.memberCount !== 1 ? 's' : ''}
+                    </span>
+                    <span>{new Date(project.createdAt).toLocaleDateString()}</span>
+                  </div>
                 </div>
               </div>
             ))}
