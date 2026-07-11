@@ -1,36 +1,164 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TaskManager
 
-## Getting Started
+A full-stack project management application built with Next.js and ASP.NET Core. Organize work with Kanban boards, collaborate with team members, and track progress across projects.
 
-First, run the development server:
+![TaskManager Dashboard](./screenshots/dashboard.png)
+
+## Features
+
+- **Authentication** — Secure register and login with JWT tokens and BCrypt password hashing
+- **Projects** — Create and manage projects with cover images, descriptions, and status tracking
+- **Kanban boards** — Visualize tasks across Todo, In Progress, and Done columns
+- **Task management** — Create tasks with priority levels, assignees, and due dates
+- **Team collaboration** — Invite members to projects by email, manage roles
+- **Comments** — Threaded comments on individual tasks
+- **Image uploads** — Project cover images stored and optimized via Cloudinary
+
+## Tech stack
+
+### Frontend
+
+- Next.js 16 (App Router)
+- TypeScript
+- Tailwind CSS v4
+- TanStack Query — server state management
+- Zustand — client state management
+- React Hook Form — form validation
+- Axios — HTTP client with JWT interceptor
+
+### Backend
+
+- ASP.NET Core (.NET 8)
+- Entity Framework Core 9
+- PostgreSQL
+- JWT authentication
+- BCrypt password hashing
+- Cloudinary — image storage and optimization
+- Swagger — API documentation
+
+## Getting started
+
+### Prerequisites
+
+- Node.js 20+
+- .NET 8 SDK
+- PostgreSQL 16
+- Cloudinary account (free tier works)
+
+### Backend setup
+
+1. Navigate to the backend folder:
+
+```bash
+cd backend
+```
+
+2. Copy the example config and fill in your values:
+
+```bash
+cp appsettings.example.json appsettings.json
+```
+
+3. Update `appsettings.json` with your PostgreSQL connection string, JWT secret, and Cloudinary credentials.
+
+4. Create the database:
+
+```bash
+psql -U postgres -c "CREATE DATABASE taskmanager"
+```
+
+5. Run migrations:
+
+```bash
+dotnet ef database update
+```
+
+6. Start the API:
+
+```bash
+dotnet run
+```
+
+The API will be available at `https://localhost:7192`. Swagger docs at `https://localhost:7192/swagger`.
+
+### Frontend setup
+
+1. Navigate to the frontend folder:
+
+```bash
+cd frontend
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Update the `baseURL` in `src/lib/axios.ts` to match your backend port.
+
+4. Start the dev server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The app will be available at `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## API endpoints
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Auth
 
-## Learn More
+| Method | Endpoint             | Description             |
+| ------ | -------------------- | ----------------------- |
+| POST   | `/api/auth/register` | Register a new user     |
+| POST   | `/api/auth/login`    | Login and get JWT token |
 
-To learn more about Next.js, take a look at the following resources:
+### Projects
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Method | Endpoint                   | Description                       |
+| ------ | -------------------------- | --------------------------------- |
+| GET    | `/api/projects`            | Get all projects for current user |
+| POST   | `/api/projects`            | Create a new project              |
+| GET    | `/api/projects/{id}`       | Get project by ID                 |
+| PUT    | `/api/projects/{id}`       | Update project                    |
+| DELETE | `/api/projects/{id}`       | Delete project                    |
+| PATCH  | `/api/projects/{id}/image` | Update project cover image        |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Tasks
 
-## Deploy on Vercel
+| Method | Endpoint                            | Description                 |
+| ------ | ----------------------------------- | --------------------------- |
+| GET    | `/api/projects/{id}/tasks`          | Get all tasks for a project |
+| POST   | `/api/projects/{id}/tasks`          | Create a new task           |
+| GET    | `/api/projects/{id}/tasks/{taskId}` | Get task by ID              |
+| PUT    | `/api/projects/{id}/tasks/{taskId}` | Update task                 |
+| DELETE | `/api/projects/{id}/tasks/{taskId}` | Delete task                 |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Members
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Method | Endpoint                                | Description             |
+| ------ | --------------------------------------- | ----------------------- |
+| GET    | `/api/projects/{id}/members`            | Get all project members |
+| POST   | `/api/projects/{id}/members`            | Add member by email     |
+| DELETE | `/api/projects/{id}/members/{memberId}` | Remove member           |
+
+### Comments
+
+| Method | Endpoint                               | Description                 |
+| ------ | -------------------------------------- | --------------------------- |
+| GET    | `/api/tasks/{id}/comments`             | Get all comments for a task |
+| POST   | `/api/tasks/{id}/comments`             | Add a comment               |
+| DELETE | `/api/tasks/{id}/comments/{commentId}` | Delete a comment            |
+
+### Images
+
+| Method | Endpoint            | Description                   |
+| ------ | ------------------- | ----------------------------- |
+| POST   | `/api/image/upload` | Upload an image to Cloudinary |
+
+## Screenshots
+
+| Landing page                          | Dashboard                                 | Kanban board                        |
+| ------------------------------------- | ----------------------------------------- | ----------------------------------- |
+| ![Landing](./screenshots/landing.png) | ![Dashboard](./screenshots/dashboard.png) | ![Kanban](./screenshots/kanban.png) |
