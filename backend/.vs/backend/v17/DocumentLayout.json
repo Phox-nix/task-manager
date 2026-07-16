@@ -5,34 +5,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|c:\\users\\ninop\\projectsc\\task-manager\\backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|c:\\users\\ninop\\projectsc\\task-manager\\backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|c:\\users\\ninop\\projectsc\\task-manager\\backend\\controllers\\imagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|solutionrelative:controllers\\imagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|c:\\users\\ninop\\projectsc\\task-manager\\backend\\controllers\\projectscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|solutionrelative:controllers\\projectscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|c:\\users\\ninop\\projectsc\\task-manager\\backend\\services\\interfaces\\iprojectservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|solutionrelative:services\\interfaces\\iprojectservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|c:\\users\\ninop\\projectsc\\task-manager\\backend\\services\\implementations\\projectservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|solutionrelative:services\\implementations\\projectservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|c:\\users\\ninop\\projectsc\\task-manager\\backend\\services\\implementations\\imageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|solutionrelative:services\\implementations\\imageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|c:\\users\\ninop\\projectsc\\task-manager\\backend\\services\\interfaces\\iimageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D035889-7514-4DAA-BD54-1ADB4965606E}|backend.csproj|solutionrelative:services\\interfaces\\iimageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,21 +14,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAABtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-07-14T09:36:40.015Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -65,82 +24,10 @@
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAGIAAAAAAAAAAAAAAFcAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAAAGkAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-11T07:46:07.262Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ProjectService.cs",
-              "DocumentMoniker": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\Services\\Implementations\\ProjectService.cs",
-              "RelativeDocumentMoniker": "Services\\Implementations\\ProjectService.cs",
-              "ToolTip": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\Services\\Implementations\\ProjectService.cs",
-              "RelativeToolTip": "Services\\Implementations\\ProjectService.cs",
-              "ViewState": "AgIAAGEAAAAAAAAAAAAAAGoAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-11T07:45:41.778Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "IProjectService.cs",
-              "DocumentMoniker": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\Services\\Interfaces\\IProjectService.cs",
-              "RelativeDocumentMoniker": "Services\\Interfaces\\IProjectService.cs",
-              "ToolTip": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\Services\\Interfaces\\IProjectService.cs",
-              "RelativeToolTip": "Services\\Interfaces\\IProjectService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-11T07:44:49.826Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ProjectsController.cs",
-              "DocumentMoniker": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\Controllers\\ProjectsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ProjectsController.cs",
-              "ToolTip": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\Controllers\\ProjectsController.cs",
-              "RelativeToolTip": "Controllers\\ProjectsController.cs",
-              "ViewState": "AgIAAFgAAAAAAAAAAAAAAGEAAAA5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-11T07:39:04.936Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ImageController.cs",
-              "DocumentMoniker": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\Controllers\\ImageController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ImageController.cs",
-              "ToolTip": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\Controllers\\ImageController.cs",
-              "RelativeToolTip": "Controllers\\ImageController.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAAABAAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-11T07:37:54.759Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ImageService.cs",
-              "DocumentMoniker": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\Services\\Implementations\\ImageService.cs",
-              "RelativeDocumentMoniker": "Services\\Implementations\\ImageService.cs",
-              "ToolTip": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\Services\\Implementations\\ImageService.cs",
-              "RelativeToolTip": "Services\\Implementations\\ImageService.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAAAEQAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-10T13:32:23.656Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "IImageService.cs",
-              "DocumentMoniker": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\Services\\Interfaces\\IImageService.cs",
-              "RelativeDocumentMoniker": "Services\\Interfaces\\IImageService.cs",
-              "ToolTip": "C:\\Users\\ninop\\projectsC\\task-manager\\backend\\Services\\Interfaces\\IImageService.cs",
-              "RelativeToolTip": "Services\\Interfaces\\IImageService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-10T13:30:51.283Z"
             }
           ]
         }
