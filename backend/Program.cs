@@ -78,7 +78,7 @@ builder.Services.AddCors(options =>
         policy.WithOrigins(
             "http://localhost:3000",
             "https://localhost:3000",
-            "https://task-manager-nino77.vercel.app"
+            "https://task-manager-git-main-nino77.vercel.app"
         )
         .AllowAnyHeader()
         .AllowAnyMethod();
