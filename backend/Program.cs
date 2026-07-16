@@ -75,11 +75,12 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins(
-            "http://localhost:3000",
-            "https://localhost:3000",
-            "https://task-manager-git-main-nino77.vercel.app"
-        )
+        policy.SetIsOriginAllowed(origin =>
+        {
+            var uri = new Uri(origin);
+            return uri.Host == "localhost" ||
+                   uri.Host.EndsWith(".vercel.app");
+        })
         .AllowAnyHeader()
         .AllowAnyMethod();
     });
