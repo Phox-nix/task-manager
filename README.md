@@ -2,6 +2,12 @@
 
 A full-stack project management application built with Next.js and ASP.NET Core. Organize work with Kanban boards, collaborate with team members, and track progress across projects.
 
+## Live demo
+
+🔗 [taskmanager-nino77.vercel.app](https://task-manager-nino77.vercel.app/)
+
+> **Note:** The backend runs on Render's free tier and may take 20-30 seconds to wake up on the first request after a period of inactivity. Subsequent requests will be fast.
+
 ![TaskManager Dashboard](./screenshots/dashboard.png)
 
 ## Features
